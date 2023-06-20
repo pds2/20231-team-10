@@ -19,6 +19,7 @@ class Carta{
 
         //Get valor da Carta
         int getValor();
+
         //Set valor da Carta
         void setValor(int valor);
 
@@ -29,7 +30,8 @@ class Carta{
         std::string getNaipe();
 
         //Get se a Carta esta virada
-        bool getRosto_baixo(); 
+        bool getRosto_baixo();
+
         //Set se a Carta esta virada
         void setRosto_baixo(bool rosto_baixo);
 };
