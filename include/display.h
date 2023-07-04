@@ -27,7 +27,7 @@ const char spades[]= {0xE2, 0x99, 0xA0, 0};
 class display {
 public:
 	display(void);
-	~display(); // destructor
+	~display(); 
 
 
 	int captureInput(void);
@@ -40,4 +40,7 @@ public:
 	int	getLines(void) {return lines;}
 	int getMouseEventX(void) {return mouseEventX;}
   int getMouseEventY(void) {return mouseEventY;}
-  int getMouseEventButton(void) {return mouseEventButton;}
+  int getMouseEventButton(void) {return mouseEventButton;}	
+
+  }
+}
