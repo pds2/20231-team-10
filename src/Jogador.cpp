@@ -52,16 +52,16 @@ Players::Jogador::Jogador(int id, bool bot, std::string nome) {
     this->nome = nome;
     this->fichas = 100; // Inicialização padrão do valor de fichas.
     this->fichas_apostadas = 0; // Inicialização padrão do valor de fichas.
-    this->pontos = 0; //
+    this->pontos = 0; //Inicialização padrão do valor de pontos
     this->baralho = vector<Carta>();
 };
 Players::Jogador::~Jogador() {
     this->baralho.clear();
     this->bot = false;
     this->atividade = true;
-    this->fichas = 100; // Inicialização padrão do valor de fichas.
+    this->fichas = 0;
     this->fichas_apostadas = 0;
-    this->pontos = 0; //
+    this->pontos = 0;
 };
 void Players::Jogador::limparBaralho(){
     this->baralho.clear();
