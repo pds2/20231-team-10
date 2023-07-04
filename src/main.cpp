@@ -21,7 +21,7 @@ void sleep(bool pode, int tempo) {
     if (pode) {std::this_thread::sleep_for(std::chrono::seconds(tempo));}
 }
 int main() {
-    int NUM_MAX_PLAYERS = 3;
+    unsigned int NUM_MAX_PLAYERS = 3;
     int PRECO_BLIND = 10;
     int DIFICULDADE;
     int TEMPO_DE_DORMIR = 1;
@@ -29,7 +29,7 @@ int main() {
 
     Players::Dealer dealer = Dealer(0, "James-san");
     vector<Jogador> jogadores;
-    for (int i = 0; i <NUM_MAX_PLAYERS-1; i++) {
+    for (unsigned int  i = 0; i <NUM_MAX_PLAYERS-1; i++) {
         jogadores.push_back(Jogador(i, true, "BOT " + std::to_string(i)));
     }
     
@@ -89,7 +89,7 @@ int main() {
             // Define a ordem dos jogadores
             std::cout << "| A ordem do jogo será: " << std::endl;
             sleep(DORMIR, TEMPO_DE_DORMIR);
-            for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+            for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                 int index = (index_iniciador + i) % NUM_MAX_PLAYERS;
                 if (index == ID_USUARIO) {
                     std::cout << "| - "  << std::to_string(i+1) <<"º - " << jogadores[index].getNome() << " (você)" << std::endl;
@@ -121,7 +121,7 @@ int main() {
                 }
                 std::cout << "| " << dealer.getNome() << ": Iniciando a " << std::to_string(rodada_de_aposta + 1) << "º rodada de apostas!" << std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
-                for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                     int index = (index_iniciador + i) % NUM_MAX_PLAYERS;
                     if (jogadores[index].getAtividade() == false) {
                         continue;
@@ -142,7 +142,7 @@ int main() {
                         if (!cartas_dadas) {
                             std::cout << "| " << dealer.getNome() << ": Distribuindo as cartas para os jogadores..." << std::endl; 
                             sleep(DORMIR, TEMPO_DE_DORMIR);
-                            for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                            for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                                 int sub_index = (index_iniciador + i) % NUM_MAX_PLAYERS;
                                 std::vector<Carta> cartas = baralho_jogo.getCartas(2);
                                 jogadores[sub_index].receberBaralho(cartas);
@@ -225,7 +225,7 @@ int main() {
                             jogadores[index].setAtividade(false);
                             jogadores_ativos--;
                             if (jogadores_ativos == 1) {
-                                for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                                for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                                     if (jogadores[i].getAtividade() == true) {
                                         std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[i].getNome() << "` irá vencedor da rodada por desistência dos participantes!"<< std::endl;
                                         sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -284,7 +284,7 @@ int main() {
                 }
                 std::cout << "| " << dealer.getNome() << ": Todos se preparem para virar as cartas. É o momento do SHOWDOWN!" << std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
-                for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                     int sub_index = (index_iniciador + i) % NUM_MAX_PLAYERS;
                     if (jogadores[sub_index].getAtividade()) {
                         std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[i].getNome() << "` suas cartas são: " << std::endl; 
@@ -299,7 +299,7 @@ int main() {
                 std::cout << "| " << dealer.getNome() << ": ..." << std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
                 vector<pair<int, int>> pontuacao = vector<pair<int, int>>();
-                for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                     if (jogadores[i].getAtividade()) {
                         pontuacao.push_back(pair<int, int>(i, Contador::ContadorDeBaralho::pontuarJogada(jogadores[i].exibirCartas(), dealer.exibirCartas(5))));
                     }
@@ -319,7 +319,7 @@ int main() {
                 sleep(DORMIR, TEMPO_DE_DORMIR+1);
                 int maior_pontuacao = pontuacao[0].second;
                 empate.push_back(pontuacao[0].first);
-                for (int indice= 1; indice < pontuacao.size(); indice++) {
+                for (unsigned int  indice= 1; indice < pontuacao.size(); indice++) {
                     if (pontuacao[indice].second == maior_pontuacao) {
                         empate.push_back(pontuacao[indice].first);
                     }
@@ -327,7 +327,7 @@ int main() {
                 if (empate.size() > 1) {
                     std::cout << "| " << dealer.getNome() << ": Houve empate entre os jogadores: " << std::endl;
                     sleep(DORMIR, TEMPO_DE_DORMIR);
-                    for (int i = 0; i < empate.size(); i++) {
+                    for (unsigned int  i = 0; i < empate.size(); i++) {
                         std::cout << "| - " << jogadores[empate[i]].getNome() << std::endl;
                     }
                 } else {
@@ -345,13 +345,13 @@ int main() {
             } else {
                 std::cout << "| " << dealer.getNome() << ": Como ocorreu um empate, temos os seguintes vencedores da rodada:" << std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
-                for (int i = 0; i < empate.size(); i++) {
+                for (unsigned int  i = 0; i < empate.size(); i++) {
                     std::cout << "| - " << jogadores[empate[i]].getNome() << std::endl;
                 }
                 std::cout << "| " << dealer.getNome() << ": O pote será dividido entre os jogadores!" << std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
                 int fichas_por_jogador = int(floor(POTE/empate.size()));
-                for (int i = 0; i < empate.size(); i++) {
+                for (unsigned int  i = 0; i < empate.size(); i++) {
                     jogadores[empate[i]].adicionarFichas(fichas_por_jogador);
                     std::cout << "| " << dealer.getNome() << ": O jogador `" << jogadores[empate[i]].getNome() << "` recebeu " << fichas_por_jogador << " fichas. Parabens!"<< std::endl;
                     sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -365,7 +365,7 @@ int main() {
             vector<pair<int, int>> ranking = vector<pair<int, int>>();
 
             int tem_baixa_pontuacao = -1; 
-            for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+            for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                 ranking.push_back(pair<int, int>(i, jogadores[i].getFichas()));
                 if (jogadores[i].getFichas() < PRECO_BLIND ) {
                     tem_baixa_pontuacao = i;
@@ -392,7 +392,7 @@ int main() {
                 // Definir proximo jogador que vai iniciar a partida.
                 index_iniciador = (index_iniciador + 1) % NUM_MAX_PLAYERS;
 
-                for(int i = 0; i < NUM_MAX_PLAYERS; i++) {
+                for(unsigned int i = 0; i < NUM_MAX_PLAYERS; i++) {
                     jogadores[i].setAtividade(true);
                     jogadores[i].setFichasApostadas(0);
                     jogadores[i].limparBaralho();
@@ -415,7 +415,7 @@ int main() {
         std::cout << "O vencedor do Jogo foi: " << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
         int vencedor = 0;
-        for (int i = 0; i < NUM_MAX_PLAYERS; i++) {
+        for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
             if (jogadores[i].getFichas() > jogadores[vencedor].getFichas()) {
                 vencedor = i;
             }
