@@ -1,4 +1,3 @@
-
 #include <ncursesw/ncurses.h>
 #include <iostream>
 #include <cstdio>
@@ -43,4 +42,3 @@ public:
   int getMouseEventButton(void) {return mouseEventButton;}	
 
   }
-}
