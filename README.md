@@ -27,8 +27,8 @@ Sanny Cristiane Moreira de Sales
 <br>
 Para cada jogador da rodada, o sistema guarda o nome, a mão e os valores de aposta<br><br>
 
-<h2>2- Apostar, desistir, continuar</h2><br>
-Em cada rodada, cada jogador tem a opção de desistir e perder o valor apostado, continuar com a aposta feita ou aumentar a aposta.<br><br>
+<h2>2- Apostar, correr, cobrir, aumentar</h2><br>
+Em cada rodada, cada jogador tem a opção de correr e perder o valor apostado, continuar com a aposta feita ou aumentar a aposta.<br><br>
 
 <h2>3- Comparar cartas e sets de cartas</h2> <br>
 As funções comparam as cartas da mão e da mesa e selecionam a melhor combinação feita com até 5 delas.<br><br>
