@@ -1,0 +1,6 @@
+#include "doctest.h"
+#include "Automation.h"
+#include "Baralho.h"
+#include "Contador.h"
+#include "Jogador.h"
+#include "Display.h"
