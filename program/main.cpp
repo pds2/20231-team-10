@@ -10,6 +10,7 @@
 #include "Baralho.h"
 #include "Automation.h"
 #include "Contador.h"
+#include "utils.h"
 #include "jogoAuto.h"
 
 using namespace std;
@@ -18,10 +19,9 @@ using namespace Players;
 using namespace Automations;
 using namespace Contador;
 
-void sleep(bool pode, int tempo) {
-    if (pode) {std::this_thread::sleep_for(std::chrono::seconds(tempo));}
-}
+
 int main() {
+    
     unsigned int NUM_MAX_PLAYERS = 3;
     int PRECO_BLIND = 10;
     int DIFICULDADE;
@@ -43,9 +43,41 @@ int main() {
     int opcao;
     std::cin >> opcao;
     if (opcao == 1) {
-        jogoAuto();
-    } else {
-        std::cout << "Até a próxima! Perdedor!!!!" << std::endl;
-    }
+        jogoAuto jogo;
+        jogo.executaJogo(dealer, jogadores, baralho_jogo);
+
+        } else {
+    std::cout << "                 ⢀⣀⣤⣤⣶⡶⠶⠶⠿⠿⠿⠛⠛⠛⠻⠿⠿⣶⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⣶⠾⠿⠟⠛⠉⠁⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⣠⣾⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⢠⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣦⡀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⣴⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⡄⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⢀⣾⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡄⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⡄⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⡀⠀⠀⠀"<< std::endl;
+    std::cout << "⢸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⢀⣀⣀⣀⠀⠀⠀⠀⢻⣧⠀⠀⠀"<< std::endl;
+    std::cout << "⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠸⠿⣿⣿⣤⠀⠀⠀⠀⢿⣆⠀⠀"<< std::endl;
+    std::cout << "⢸⡇⠀⠀⠀⠀⠀⠀⠀⣠⣴⣦⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⠀⠀⠘⣿⡀⠀"<< std::endl;
+    std::cout << "⢸⡇⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⠀⠀⠀⢻⣧⠀"<< std::endl;
+    std::cout << "⢸⡇⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀   ⠀⠘⣿⡀"<< std::endl;
+    std::cout << "⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⣀⣠⣤⣴⣶⣶⣶⣶⡶⠀ ⢻⣗"<< std::endl;
+    std::cout << "⣼⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⣀⣀⣀⣀⣤⣤⣤⣤⣶⣶⣿⠿⠿⠛⠋⠉⠁⠀⠀⠀⠀ ⠀⢸⣿" << std::endl;
+    std::cout << "⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣤⣤⣤⣶⣶⣾⠿⠿⠿⠛⠛⠛⠉⠉⣉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⢸⣿"<< std::endl;
+    std::cout << "⣿⡇⠀⠀⠀⠀⠀⢀⣤⣤⣶⣶⣿⠿⠿⠟⠛⠛⠋⠉⠉⠁⠀⠀⠀⣀⣀⣠⣤⣤⣴⣶⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿"<< std::endl;
+    std::cout << "⢻⣇⠀⠀⠀⠀⠀⠈⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠛⠛⠉⠉⠀⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿"<< std::endl;
+    std::cout << "⠘⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿"<< std::endl;
+    std::cout << "⠀⠹⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿"<< std::endl;
+    std::cout << "⠀⠀⢹⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡏"<< std::endl;
+    std::cout << "⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠃"<< std::endl;
+    std::cout << "⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡟⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠘⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠁⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠈⠻⣧⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠟⠁⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⠀⠈⠻⢷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⡾⠟⠁⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⣶⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣾⠟⠉⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠿⣷⣦⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠿⠷⢶⣶⣶⣦⣤⣤⣤⣤⣤⣴⣶⠾⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
+    std::cout << std::endl;
+    std::cout << "Até a próxima, perdedor!!!!" << std::endl;
+        }
 
 }
