@@ -13,7 +13,7 @@ bool ContadorDeBaralho::ocorreuStraightFlush(vector<Carta> cartas_jogador, vecto
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 4; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 4; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 4].getIndice()) == 4) {
             if (cartas[i].getNaipe() == cartas[i + 1].getNaipe() &&
                 cartas[i].getNaipe() == cartas[i + 2].getNaipe() &&
@@ -32,7 +32,7 @@ bool ContadorDeBaralho::ocorreuQuadra(vector<Carta> cartas_jogador, vector<Carta
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 3; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 3; i++) {
         if (cartas[i].getIndice() - cartas[i + 3].getIndice() == 0) {
             if (cartas[i].getNaipe() != cartas[i + 1].getNaipe() &&
                 cartas[i].getNaipe() != cartas[i + 2].getNaipe() &&
@@ -55,7 +55,7 @@ bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Ca
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 2; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 2; i++) {
         if (cartas[i].getIndice() - cartas[i + 2].getIndice() == 0) {
             if (cartas[i].getNaipe() != cartas[i + 1].getNaipe() &&
                 cartas[i].getNaipe() != cartas[i + 2].getNaipe() &&
@@ -63,7 +63,7 @@ bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Ca
             ) {
                 int indice = cartas[i].getIndice();
                 bool par_encontrado = false;
-                for (int i = 0; i < cartas.size() - 1; i++) {
+                for (unsigned int i = 0; i < cartas.size() - 1; i++) {
                     if (cartas[i].getIndice() - cartas[i + 1].getIndice() == 0) {
                         if (cartas[i].getIndice() != indice) {
                             par_encontrado = true;
@@ -90,7 +90,7 @@ bool ContadorDeBaralho::ocorreuFlush(vector<Carta> cartas_jogador, vector<Carta>
     int cartas_ouros = 0;
     int cartas_paus = 0;
     // Copas", "Espadas", "Ouros", "Paus
-    for (int i = 0; i < cartas.size(); i++) {
+    for (unsigned int i = 0; i < cartas.size(); i++) {
         if (cartas[i].getNaipe() == "Copas") {
             cartas_copas++;
         } else if (cartas[i].getNaipe() == "Espadas") {
@@ -112,7 +112,7 @@ bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Ca
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 4; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 4; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 4].getIndice()) == 4) {
             resposta = true;
             break;
@@ -121,14 +121,14 @@ bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Ca
 
     if (!resposta) {
         bool tem_as = false;
-        for (int i = 0; i < cartas.size(); i++) {
+        for (unsigned int i = 0; i < cartas.size(); i++) {
             if (cartas[i].getIndice() == 13) {
                 tem_as = true;
                 break;
             }
         }
         if (tem_as) {
-            for (int i = 0; i < cartas.size() - 3; i++) {
+            for (unsigned int i = 0; i < cartas.size() - 3; i++) {
                 if (abs(cartas[i].getIndice() - cartas[i + 3].getIndice()) == 3 && cartas[i].getIndice() != 13) {
                     resposta = true;
                     break;
@@ -144,11 +144,11 @@ bool ContadorDeBaralho::ocorreuDoisPares(vector<Carta> cartas_jogador, vector<Ca
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 1; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 1; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 1].getIndice()) == 1) {
             int indice = cartas[i].getIndice();
             if (i + 2 < cartas.size()) {
-                for (int j = i + 1; j < cartas.size() - 1; j++) {
+                for (unsigned int j = i + 1; j < cartas.size() - 1; j++) {
                     if (abs(cartas[j].getIndice() - cartas[j + 1].getIndice()) == 1 && cartas[j].getIndice() != indice) {
                         resposta = true;
                         break;
@@ -165,7 +165,7 @@ bool ContadorDeBaralho::ocorreuPares(vector<Carta> cartas_jogador, vector<Carta>
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
-    for (int i = 0; i < cartas.size() - 1; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 1; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 1].getIndice()) == 1) {
             resposta = true;
             break;
@@ -181,7 +181,7 @@ int ContadorDeBaralho::pontuarJogada(vector<Carta> cartas_jogador, vector<Carta>
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
 
-    for (int i = 0; i < cartas.size() - 1; i++) {
+    for (unsigned int i = 0; i < cartas.size() - 1; i++) {
         if (cartas[i].getIndice() > pontos) {
             pontos = cartas[i].getIndice();
         }
