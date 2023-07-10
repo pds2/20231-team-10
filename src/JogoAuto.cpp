@@ -37,6 +37,10 @@ jogoAuto::jogoAuto(
         sleep(DORMIR, TEMPO_DE_DORMIR);
         std::cin >> DIFICULDADE;
 
+        if (DIFICULDADE < 0 || DIFICULDADE > 1) {
+        throw std::runtime_error("Valor de dificuldade inválido. Por favor, escolha um valor entre 0 e 1.");
+        }
+
         std::cout  << dealer.getNome() << ": Ótimo " << nome << ", todos os jogadores começaram com 100 fichas." << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
         
@@ -165,6 +169,11 @@ jogoAuto::jogoAuto(
                                 std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` Digite a ação que deseja tomar! "<< std::endl;
                                 sleep(DORMIR, TEMPO_DE_DORMIR);
                                 std::cin >> acao;
+
+                                if (acao < 0 || acao > 3) {
+                                throw std::runtime_error("Ação inválida. Por favor, escolha uma ação válida entre 0 e 3.");
+                                }
+
                                 
                                 if (acao == 2 && jogadores[index].getFichas() + jogadores[index].getFichasApostadas()  < ultima_aposta) {
                                     std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` você não tem fichas suficientes para cobrir a aposta."<< std::endl;
@@ -182,6 +191,11 @@ jogoAuto::jogoAuto(
                                             std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` você tem " << jogadores[index].getFichas() << " fichas. A aposta atual é de " << ultima_aposta << " fichas."<< std::endl;
                                             std::cout << "| " << dealer.getNome() << ": Para quanto deseja aumentar a aposta? "<< std::endl;
                                             std::cin >> nova_aposta;
+
+                                            if (nova_aposta > jogadores[index].getFichas() + jogadores[index].getFichasApostadas()) {
+                                                throw std::runtime_error("Valor de aposta inválido. Você não possui fichas suficientes para fazer essa aposta.");
+                                            }
+                                            
                                             if (nova_aposta <= jogadores[index].getFichas() + jogadores[index].getFichasApostadas() && nova_aposta > ultima_aposta) {
                                                 resposta_invalida = false;
                                                 resposta_acao_invalida = false;
