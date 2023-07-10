@@ -3,7 +3,7 @@
 
 #include "../include/Baralho.h"
 
-TEST_CASE("Carta class tests") {
+TEST_CASE("Testando Carta") {
     Baralhos::Carta carta1("Copas", "A", 0, 12);
     Baralhos::Carta carta2("Paus", "2", 1, 0);
 
@@ -66,12 +66,37 @@ TEST_CASE("Carta class tests") {
     }
 
     SUBCASE("Test operator>()") {
-        CHECK(carta1 > carta2);
-        CHECK_FALSE(carta2 > carta1);
+        //deve retornar falso, pois carta1.codigo == 0  e carta2.codigo == 1
+        CHECK(carta2 > carta1);
+        CHECK_FALSE(carta1 > carta2);
     }
 
     SUBCASE("Test operator<()") {
-        CHECK(carta2 < carta1);
-        CHECK_FALSE(carta1 < carta2);
+        CHECK(carta1 < carta2);
+        CHECK_FALSE(carta2 < carta1);
     }
+}
+
+TEST_CASE("Testando BaralhoTotal") {
+    Baralhos::BaralhoTotal baralho;
+
+    SUBCASE("Test iniciarBaralho()") {
+        baralho.iniciarBaralho();
+        CHECK(baralho.getNumeroCartas() == 52);
+        CHECK(baralho.getCartasRestantes() == 52);
+    }
+
+    SUBCASE("Test embaralhar()") {
+        baralho.embaralhar();
+        CHECK(baralho.getNumeroCartas() == 52);
+        CHECK(baralho.getCartasRestantes() == 52);
+    }
+
+    SUBCASE("Test getCartas()") {
+        int quantidade = 5;
+        vector<Baralhos::Carta> cartas = baralho.getCartas(quantidade);
+        CHECK(cartas.size() == quantidade);
+        CHECK(baralho.getCartasRestantes() == 47);
+    }
+
 }
