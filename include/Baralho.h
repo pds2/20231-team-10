@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <string>
+#include <random>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -11,23 +13,23 @@ using namespace std;
 namespace Baralhos {
     class Carta {
         private:
-            std::string naipe;
-            std::string valor;
+            string naipe;
+            string valor;
             int codigo;
             int indice;
         public:
             Carta();
-            Carta(std::string naipe, std::string valor, int codigo, int indice);
-            std::string getNaipe();
-            std::string getValor();
+            Carta(string naipe, string valor, int codigo, int indice);
+            string getNaipe();
+            string getValor();
             int getIndice();
             int getCodigo();
-            void setNaipe(std::string naipe);
+            void setNaipe(string naipe);
             void setIndice(int valor);
-            void setValor(std::string valor);
+            void setValor(string valor);
             void setCodigo(int codigo);
-            std::string getCarta();
-            std::string getSimboloCarta();
+            string getCarta();
+            string getSimboloCarta();
             bool operator > (const Carta& str) const;
             bool operator < (const Carta& str) const;
     };
@@ -45,7 +47,7 @@ namespace Baralhos {
             int getNumeroCartas( );
             int getCartasRestantes( );
             void printBaralho();
-            std::vector<Carta> getCartas(int quantidade);
+            vector<Carta> getCartas(int quantidade);
     };
 }
 #endif

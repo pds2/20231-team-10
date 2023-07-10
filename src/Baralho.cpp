@@ -1,10 +1,5 @@
-#include <iostream>
-#include <string>
-#include <random>
-#include <algorithm>
-#include <vector>
-#include "Baralho.h"
 
+#include "../include/Baralho.h"
 using namespace std;
 using namespace Baralhos;
 
@@ -15,18 +10,18 @@ Baralhos::Carta::Carta() {
     this->indice = -1;
 }
 
-Baralhos::Carta::Carta(std::string naipe, std::string valor, int codigo, int indice) {
+Baralhos::Carta::Carta(string naipe, string valor, int codigo, int indice) {
     this->naipe = naipe;
     this->valor = valor;
     this->codigo = codigo;
     this->indice = indice;
 }
 
-std::string Baralhos::Carta::getNaipe() {
+string Baralhos::Carta::getNaipe() {
     return this->naipe;
 }
 
-std::string Baralhos::Carta::getValor() {
+string Baralhos::Carta::getValor() {
     return this->valor;
 }
 
@@ -38,11 +33,11 @@ int Baralhos::Carta::getIndice() {
     return this->indice;
 }
 
-void Baralhos::Carta::setNaipe(std::string naipe) {
+void Baralhos::Carta::setNaipe(string naipe) {
     this->naipe = naipe;
 }
 
-void Baralhos::Carta::setValor(std::string valor) {
+void Baralhos::Carta::setValor(string valor) {
     this->valor = valor;
 }
 
@@ -54,12 +49,12 @@ void Baralhos::Carta::setIndice(int valor) {
     this->indice = valor;
 }
 
-std::string Baralhos::Carta::getCarta(){ 
+string Baralhos::Carta::getCarta(){ 
     return this->valor + " de " + this->naipe;
 }
 
-std::string Baralhos::Carta::getSimboloCarta(){ 
-    std::string simbolo =  "";
+string Baralhos::Carta::getSimboloCarta(){ 
+    string simbolo =  "";
     if (this->naipe == "Copas") {
         simbolo = "♥";
     } else if (this->naipe == "Espadas") {
@@ -93,9 +88,9 @@ void Baralhos::BaralhoTotal::iniciarBaralho() {
     this->todas_cartas = vector<Carta>();
     this->cartas_usadas = 0;
 
-    std::string naipes[4] = {"Copas", "Espadas", "Ouros", "Paus"};
+    string naipes[4] = {"Copas", "Espadas", "Ouros", "Paus"};
     int valores_indices[13] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-    std::string valores[13] = {"2", "3", "4", "5", "6", "7", "8","9", "10", "J", "Q", "K", "A"};
+    string valores[13] = {"2", "3", "4", "5", "6", "7", "8","9", "10", "J", "Q", "K", "A"};
     int codigo = 0;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 13; j++, codigo++) {
@@ -106,9 +101,9 @@ void Baralhos::BaralhoTotal::iniciarBaralho() {
 }
 
 void Baralhos::BaralhoTotal::embaralhar() {
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::shuffle(this->todas_cartas.begin(), this->todas_cartas.end(), generator);
+    random_device rd;
+    mt19937 generator(rd());
+    shuffle(this->todas_cartas.begin(), this->todas_cartas.end(), generator);
 }
 
 vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
@@ -118,7 +113,7 @@ vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
     cartas.resize(quantidade);
     for (Carta carta : cartas) {
         int code = carta.getCodigo();
-        this->todas_cartas.erase(std::remove_if(this->todas_cartas.begin(), this->todas_cartas.end(), [code](Carta c) {
+        this->todas_cartas.erase(remove_if(this->todas_cartas.begin(), this->todas_cartas.end(), [code](Carta c) {
             return c.getCodigo() == code;
         }), this->todas_cartas.end());
     }
@@ -128,7 +123,7 @@ vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
 
 void Baralhos::BaralhoTotal::printBaralho() {
     for (int i = 0; i < this->todas_cartas.size(); i++) {
-        std::cout << this->todas_cartas[i].getCarta() << std::endl;
+        cout << this->todas_cartas[i].getCarta() << endl;
     }
 }
 
