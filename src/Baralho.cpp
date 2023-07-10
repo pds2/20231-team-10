@@ -71,6 +71,12 @@ bool Baralhos::Carta::operator > (const Carta& str) const {
     return (this->codigo > str.codigo);
 
 };
+
+bool Baralhos::Carta::operator == (const Carta& str) const {
+    return (this->codigo == str.codigo);
+
+};
+
 bool Baralhos::Carta::operator < (const Carta& str) const {
     return (this->codigo < str.codigo);
 };
@@ -106,7 +112,12 @@ void Baralhos::BaralhoTotal::embaralhar() {
     shuffle(this->todas_cartas.begin(), this->todas_cartas.end(), generator);
 }
 
-vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
+int Baralhos::BaralhoTotal::getNumeroCartas()
+{
+    return this->numero_cartas;
+}
+vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade)
+{
     vector<Carta> cartas = this->todas_cartas;
 
     // Resize the vector to the desired sample size

@@ -32,6 +32,7 @@ namespace Baralhos {
             string getSimboloCarta();
             bool operator > (const Carta& str) const;
             bool operator < (const Carta& str) const;
+            bool operator == (const Carta& str) const;
     };
 
     class BaralhoTotal {
