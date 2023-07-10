@@ -52,6 +52,7 @@ int Automations::Decisor::decidirAcao(
     } else {
         acao = -1;
         if (pode_aumentar == 1) {
+        try {
             // escolha aleatoriamente um elemento de acoes
             vector<Carta> cartas = jogador->exibirCartas();
             cartas.insert(cartas.end(), cartas_na_mesa.begin(), cartas_na_mesa.end());
@@ -84,6 +85,10 @@ int Automations::Decisor::decidirAcao(
                 }
                 
             }
+
+        } catch (std::exception& e) {
+            std:: cerr << "Ocorreu um erro ao contar as cartas: " << e.what() << std::endl;
+        }
         } else {
             if (pode_cobrir == 1) {
                 acoes.push_back(2);
@@ -128,7 +133,8 @@ int Automations::Decisor::decidirAposta(
     //     proposta = valores[rand() % valores.size()];
     // } else {
     //     // bolar estratégia
-    // }
+    // } 
+    try {
     vector<int> valores = {ultima_aposta};
     for (int i = 0; i < (fichas+fichas_apostadas) - proposta-1; i++) {
         valores.push_back(i);
@@ -138,5 +144,8 @@ int Automations::Decisor::decidirAposta(
     std::uniform_int_distribution<int> distribuicao(0, valores.size());
     int rand = distribuicao(gerador);
     proposta += valores[rand];
+    } catch (std::exception& e) {
+        std::cerr << "Ocorreu um erro ao decidir a aposta: " << e.what() << std::endl;
+    }
     return proposta;
 }
