@@ -109,8 +109,18 @@ void Baralhos::BaralhoTotal::embaralhar() {
 vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
     vector<Carta> cartas = this->todas_cartas;
 
+try {
+        if (quantidade > this->todas_cartas.size()) {
+            throw std::runtime_error("Não há cartas suficientes no baralho.");
+        }
+    
     // Resize the vector to the desired sample size
     cartas.resize(quantidade);
+
+    auto removePredicate = [cartas](const Carta& c) {
+            return std::find(cartas.begin(), cartas.end(), c) != cartas.end();
+        };
+    
     for (Carta carta : cartas) {
         int code = carta.getCodigo();
         this->todas_cartas.erase(remove_if(this->todas_cartas.begin(), this->todas_cartas.end(), [code](Carta c) {
@@ -118,6 +128,9 @@ vector<Carta> Baralhos::BaralhoTotal::getCartas(int quantidade) {
         }), this->todas_cartas.end());
     }
     this->cartas_usadas += quantidade;
+} catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao obter as cartas: " << e.what() << std::endl;
+    }
     return cartas;
 }
 
