@@ -71,8 +71,15 @@ std::cout <<"P::::::::P         o:::::::::::::::ok::::::k  k:::::ke::::::::eeeee
 std::cout <<"P::::::::P          oo:::::::::::oo k::::::k   k:::::kee:::::::::::::e   r:::::r" << std::endl;
 std::cout <<"PPPPPPPPPP            ooooooooooo   kkkkkkkk    kkkkkkk eeeeeeeeeeeeee   rrrrrrr" << std::endl;
 std::cout << std::endl;
+    
+
+
     std::cout << dealer.getNome() <<": Bom dia! Tudo bem ? Bem vindo ao Casino DDC Texas Hold! Eu me chamo James-san, serei o Dealer de hoje. Está preparado para apostar tudo ? " << std::endl;
     sleep(DORMIR, TEMPO_DE_DORMIR);
+
+    bool rodando = true;
+    while (rodando == true){
+    std::cout << std::endl;
     std::cout << dealer.getNome() << ": Digite 1 para começar o jogo." << std::endl;
     std::cout << dealer.getNome() << ": Digite 2 para ver as regras." << std::endl;
     std::cout << dealer.getNome() << ": Digite 3 para sair." << std::endl;
@@ -98,11 +105,17 @@ std::cout << std::endl;
     std::cout << std::endl;
 
     std::cout <<"O Texas Hold'em é jogado com um baralho completo de 52 cartas sem coringas. Cada jogador faz o seu “buy-in” para entrar na partida (no nosso jogo, um valor padronizado) e recebe uma quantidade pré-determinada de fichas. Aí começa o jogo." << std::endl;
+    std::cout << std::endl;
     std::cout <<"A cada mão, um novo jogador vai embaralhar e distribuir as cartas. Ele ficará conhecido nessa mão como o 'dealer'." << std::endl;
+    std::cout << std::endl;
     std::cout <<"O parceiro à sua esquerda deve colocar no escuro o 'small blind', uma pré-aposta cujo valor é estabelecido antes do início do jogo, e o jogador à esquerda dele vai postar também no escuro o 'big blind', que é o dobro. "<< std::endl;
+    std::cout << std::endl;
     std::cout <<"Ao longo da partida, os 'blinds' vão subindo gradativamente de valor. Quando você perde todas suas fichas, está eliminado. " << std::endl;
+    std::cout << std::endl;
     std::cout <<"O jogo termina quando algum dos participantes acumular todas as fichas da mesa." << std::endl;
+    std::cout << std::endl;
     }
+    
     
     else if (opcao == 3){
     std::cout << "                 ⢀⣀⣤⣤⣶⡶⠶⠶⠿⠿⠿⠛⠛⠛⠻⠿⠿⣶⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
@@ -136,6 +149,8 @@ std::cout << std::endl;
     std::cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠿⠷⢶⣶⣶⣦⣤⣤⣤⣤⣤⣴⣶⠾⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀"<< std::endl;
     std::cout << std::endl;
     std::cout << "Até a próxima, perdedor!!!!" << std::endl;
+        rodando = false;
         }
+    }
 
 }
