@@ -13,11 +13,18 @@
 #include "utils.h"
 #include "jogoAuto.h"
 
+using namespace std;
+using namespace Baralhos;
+using namespace Players;
+using namespace Automations;
+using namespace Contador;
 #define DORMIR true
 #define TEMPO_DE_DORMIR 1
 #define NUM_MAX_PLAYERS 3
 #define PRECO_BLIND 10
 
+jogoAuto::jogoAuto(
+    std::cout << dealer.getNome()   << ": Vamos começar o jogo!" << std::endl;
 
 
 jogoAuto::jogoAuto(){
@@ -33,7 +40,6 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
         sleep(DORMIR, TEMPO_DE_DORMIR);
         std::string nome;
         std::cin >> nome;
-
         // Adicionando o usuário da aplicação na Partida.
         int ID_USUARIO = NUM_MAX_PLAYERS-1;
         Players::Jogador usuario = Jogador(ID_USUARIO, false, nome);
@@ -45,6 +51,10 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
         sleep(DORMIR, TEMPO_DE_DORMIR);
         std::cin >> DIFICULDADE;
 
+	if (DIFICULDADE < 0 || DIFICULDADE > 1) {
+    	throw std::runtime_error("Valor de dificuldade inválido. Por favor, escolha um valor entre 0 e 1.");
+	}
+
         std::cout  << dealer.getNome() << ": Ótimo " << nome << ", todos os jogadores começaram com 100 fichas." << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
         
@@ -52,9 +62,7 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
         std::random_device rd;
         std::mt19937 gerador(rd());
         std::uniform_int_distribution<int> distribuicao(0, NUM_MAX_PLAYERS-1);        
-
         // RODADAS!!
-
         // INICIANDO A RODADA DE JOGO
         std::cout << "Agora vamos iniciar as rodada de jogo!" << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -62,7 +70,6 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
         int RODADA = 0;
         int POTE = 0;
         int index_iniciador = distribuicao(gerador);
-
         do {
             POTE = 0;
             std::cout << "======== INÍCIO Rodada " << std::to_string(RODADA) << " ========" << std::endl;
@@ -85,7 +92,6 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
             
             // Momento do  SMALL BLIND 
             // Momento do  BIG BLIND 
-
             
             int rodada_de_aposta = 0;
             int ultima_aposta = 0;
@@ -95,10 +101,8 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
             vector<int> empate = vector<int>();
             bool cartas_dadas = false;
             int nova_aposta = 0;
-
             baralho_jogo.iniciarBaralho();
             baralho_jogo.embaralhar();
-
             for (rodada_de_aposta = 0; rodada_de_aposta < 4; rodada_de_aposta++) {
                 nova_aposta = 0;
                 if (index_vencedor >=0) {
@@ -173,6 +177,10 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                                 std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` Digite a ação que deseja tomar! "<< std::endl;
                                 sleep(DORMIR, TEMPO_DE_DORMIR);
                                 std::cin >> acao;
+
+ 				if (acao < 0 || acao > 3) {
+           			throw std::runtime_error("Ação inválida. Por favor, escolha uma ação válida entre 0 e 3.");
+    				}
                                 
                                 if (acao == 2 && jogadores[index].getFichas() + jogadores[index].getFichasApostadas()  < ultima_aposta) {
                                     std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` você não tem fichas suficientes para cobrir a aposta."<< std::endl;
@@ -190,6 +198,12 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                                             std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` você tem " << jogadores[index].getFichas() << " fichas. A aposta atual é de " << ultima_aposta << " fichas."<< std::endl;
                                             std::cout << "| " << dealer.getNome() << ": Para quanto deseja aumentar a aposta? "<< std::endl;
                                             std::cin >> nova_aposta;
+
+
+					if (nova_aposta > jogadores[index].getFichas() + jogadores[index].getFichasApostadas()) {
+                			   throw std::runtime_error("Valor de aposta inválido. Você não possui fichas suficientes para fazer essa aposta.");
+            				}
+
                                             if (nova_aposta <= jogadores[index].getFichas() + jogadores[index].getFichasApostadas() && nova_aposta > ultima_aposta) {
                                                 resposta_invalida = false;
                                                 resposta_acao_invalida = false;
@@ -203,7 +217,6 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                                 }
                             }
                         }
-
                         if (acao == 0) {
                             std::cout << "| " << dealer.getNome() << ": Jogador `" << jogadores[index].getNome() << "` decidiu CORRER!"<< std::endl;
                             sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -342,13 +355,10 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                     sleep(DORMIR, TEMPO_DE_DORMIR);
                 }
             }
-
-
             // Exibir rank de jogadores e fichas:
             std::cout << "| " << dealer.getNome() << ": O rank de jogadores e fichas atualmente é: " << std::endl;
             sleep(DORMIR, TEMPO_DE_DORMIR);
             vector<pair<int, int>> ranking = vector<pair<int, int>>();
-
             int tem_baixa_pontuacao = -1; 
             for (unsigned int  i = 0; i < NUM_MAX_PLAYERS; i++) {
                 ranking.push_back(pair<int, int>(i, jogadores[i].getFichas()));
@@ -366,17 +376,14 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                 sleep(DORMIR, TEMPO_DE_DORMIR);
                 contador += 1;
             }
-
             if (tem_baixa_pontuacao != -1) {
                 std::cout << "| " << dealer.getNome() << ": O jogador `" << jogadores[tem_baixa_pontuacao].getNome() << "` não tem mais fichas para jogar. Portanto o jogo acabou!"<< std::endl;
                 sleep(DORMIR, TEMPO_DE_DORMIR);
                 JOGO_ATIVO = false;
             } else {
                 // inicializando configurações para o próximo jogo.
-
                 // Definir proximo jogador que vai iniciar a partida.
                 index_iniciador = (index_iniciador + 1) % NUM_MAX_PLAYERS;
-
                 for(unsigned int i = 0; i < NUM_MAX_PLAYERS; i++) {
                     jogadores[i].setAtividade(true);
                     jogadores[i].setFichasApostadas(0);
@@ -395,7 +402,6 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
                 nova_aposta = 0;
             }
             
-
         } while (JOGO_ATIVO);
         std::cout << "O vencedor do Jogo foi: " << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -408,4 +414,5 @@ void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTo
         std::cout << "| - " << jogadores[vencedor].getNome() << " com " << jogadores[vencedor].getFichas() << " fichas."<< std::endl;
         std::cout << "Obrigado por jogar conosco! Até a próxima!" << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
+);
 }
