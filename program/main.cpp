@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <stdlib.h>
+
 #include "Jogador.h"
 #include "Baralho.h"
 #include "Automation.h"
@@ -77,6 +79,8 @@ std::cout << std::endl;
     sleep(DORMIR, TEMPO_DE_DORMIR);
     int opcao;
     std::cin >> opcao;
+
+    system("cls");
     
     if (opcao == 1) {
         jogoAuto jogo;
