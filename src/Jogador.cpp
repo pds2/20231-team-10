@@ -1,4 +1,4 @@
-#include "Jogador.h"
+#include "../include/Jogador.h"
 
 Jogador::Jogador(int id, bool bot, std::string nome)
     : Persona(id, nome), bot(bot), atividade(true), fichas(100), fichas_apostadas(0), pontos(0) {}

@@ -1,4 +1,4 @@
-#include "Persona.h"
+#include "../include/Persona.h"
 
 Persona::Persona(int id, std::string nome) : id(id), nome(nome) {}
 
