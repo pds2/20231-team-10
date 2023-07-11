@@ -1,12 +1,19 @@
 #include <iostream>
 #include <string>
-#include "../include/Baralho.h"
-#include "../include/Contador.h"
+#include "Baralho.h"
+#include "Contador.h"
 
 using namespace std;
 using namespace Baralhos;
 using namespace Contador;
-
+/**
+ * @brief retorna true se a mão for um Straight Flush, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuStraightFlush(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -30,6 +37,14 @@ bool ContadorDeBaralho::ocorreuStraightFlush(vector<Carta> cartas_jogador, vecto
     return resposta;
 }
 
+/**
+ * @brief retorna true se a mão for uma quadra, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuQuadra(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -57,6 +72,14 @@ bool ContadorDeBaralho::ocorreuQuadra(vector<Carta> cartas_jogador, vector<Carta
     return resposta;
 };
 
+/**
+ * @brief retorna true se a mão for um full house, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -93,6 +116,14 @@ bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Ca
     return resposta;
 };
 
+/**
+ * @brief retorna true se a mão for um Flush, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuFlush(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -124,6 +155,14 @@ bool ContadorDeBaralho::ocorreuFlush(vector<Carta> cartas_jogador, vector<Carta>
     return resposta;
 };
 
+/**
+ * @brief retorna true se a mão tiver uma sequencia, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -160,6 +199,14 @@ bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Ca
     return resposta;
 }
 
+/**
+ * @brief retorna true se a mão tiver dois pares, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuDoisPares(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -185,6 +232,14 @@ bool ContadorDeBaralho::ocorreuDoisPares(vector<Carta> cartas_jogador, vector<Ca
     return resposta;
 }
 
+/**
+ * @brief retorna true se a mão tiver um par, false em caso contrario
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return true 
+ * @return false 
+ */
 bool ContadorDeBaralho::ocorreuPares(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
     try {
@@ -203,6 +258,13 @@ bool ContadorDeBaralho::ocorreuPares(vector<Carta> cartas_jogador, vector<Carta>
     return resposta;
 }
 
+/**
+ * @brief distribui a pontuação de acordo com a mão obtida
+ * 
+ * @param cartas_jogador 
+ * @param cartas_mesa 
+ * @return int 
+ */
 int ContadorDeBaralho::pontuarJogada(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     int pontos = 0;
     try {
@@ -242,6 +304,12 @@ int ContadorDeBaralho::pontuarJogada(vector<Carta> cartas_jogador, vector<Carta>
     return pontos;
 }
 
+/**
+ * @brief nomeia a jogada de acordo com a pontuação obtida
+ * 
+ * @param pontuacao 
+ * @return std::string 
+ */
 std::string ContadorDeBaralho::nomearJogada(int pontuacao) {
     std::string nome = "Carta Alta";
     try {
