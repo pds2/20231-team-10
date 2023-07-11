@@ -80,7 +80,7 @@ std::cout << std::endl;
     int opcao;
     std::cin >> opcao;
 
-    system("cls");
+    system("clear");
     
     if (opcao == 1) {
         jogoAuto jogo;
