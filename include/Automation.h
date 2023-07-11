@@ -10,7 +10,6 @@
 
 using namespace std;
 using namespace Baralhos;
-using namespace Players;
 
 namespace Automations {
     class Decisor {

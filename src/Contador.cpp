@@ -129,7 +129,7 @@ bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Ca
     try {
         vector<Carta> cartas = cartas_jogador;
         cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
-        std::sort(cartas.begin(), cartas.end(), greater<CartCarta>());
+        std::sort(cartas.begin(), cartas.end(), greater<Carta>());
         for (unsigned int i = 0; i < cartas.size() - 4; i++) {
             if (abs(cartas[i].getIndice() - cartas[i + 4].getIndice()) == 4) {
                 resposta = true;

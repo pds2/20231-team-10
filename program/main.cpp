@@ -15,7 +15,6 @@
 
 using namespace std;
 using namespace Baralhos;
-using namespace Players;
 using namespace Automations;
 using namespace Contador;
 
@@ -28,7 +27,7 @@ int main() {
     int TEMPO_DE_DORMIR = 1;
     bool DORMIR = true;
 
-    Players::Dealer dealer = Dealer(0, "James-san");
+    Persona dealer = Persona(0, "James-san");
     vector<Jogador> jogadores;
     for (unsigned int  i = 0; i <NUM_MAX_PLAYERS-1; i++) {
         jogadores.push_back(Jogador(i, true, "BOT " + std::to_string(i)));
