@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <stdlib.h>
+
 #include "Jogador.h"
 #include "Baralho.h"
 #include "Automation.h"
@@ -65,6 +67,8 @@ void jogoAuto::executaJogo(Persona& dealer, vector<Jogador>& jogadores, BaralhoT
 
         do {
             POTE = 0;
+            sleep(DORMIR, TEMPO_DE_DORMIR);
+            system("clear");
             std::cout << "======== INÍCIO Rodada " << std::to_string(RODADA) << " ========" << std::endl;
             sleep(DORMIR, TEMPO_DE_DORMIR);
             if (RODADA == 0){
@@ -321,6 +325,9 @@ void jogoAuto::executaJogo(Persona& dealer, vector<Jogador>& jogadores, BaralhoT
                     index_vencedor = pontuacao[0].first;
                 }
             }
+            sleep(DORMIR, TEMPO_DE_DORMIR);
+            system("clear");
+
             // Potuaçõ dos jogadores
             if (empate.size() == 1) {
                 std::cout << "| " << dealer.getNome() << ": O vencedor da rodada foi o jogador `" << jogadores[index_vencedor].getNome() << "`" << std::endl;
@@ -342,6 +349,8 @@ void jogoAuto::executaJogo(Persona& dealer, vector<Jogador>& jogadores, BaralhoT
                     sleep(DORMIR, TEMPO_DE_DORMIR);
                 }
             }
+
+            system("clear");
 
 
             // Exibir rank de jogadores e fichas:
