@@ -10,16 +10,24 @@
 #include "Baralho.h"
 #include "Automation.h"
 #include "Contador.h"
+#include "utils.h"
 #include "jogoAuto.h"
 
-using namespace std;
-using namespace Baralhos;
-using namespace Players;
-using namespace Automations;
-using namespace Contador;
+#define DORMIR true
+#define TEMPO_DE_DORMIR 1
+#define NUM_MAX_PLAYERS 3
+#define PRECO_BLIND 10
 
-jogoAuto::jogoAuto(
-    std::cout << dealer.getNome()   << ": Vamos começar o jogo!" << std::endl;
+
+
+jogoAuto::jogoAuto(){
+
+}
+
+void jogoAuto::executaJogo(Dealer& dealer, vector<Jogador>& jogadores, BaralhoTotal& baralho_jogo)
+{
+        int DIFICULDADE;
+        std::cout << dealer.getNome()   << ": Vamos começar o jogo!" << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
         std::cout << dealer.getNome() << ": Para podermos dar início ao jogo, por favor nos diga qual seu nome!" << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
@@ -400,4 +408,4 @@ jogoAuto::jogoAuto(
         std::cout << "| - " << jogadores[vencedor].getNome() << " com " << jogadores[vencedor].getFichas() << " fichas."<< std::endl;
         std::cout << "Obrigado por jogar conosco! Até a próxima!" << std::endl;
         sleep(DORMIR, TEMPO_DE_DORMIR);
-);
+}
