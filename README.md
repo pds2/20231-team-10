@@ -5,9 +5,7 @@
 
 3.[Tecnologias Utilizadas](#tecnologias)
 
-4.[CRC Cards](#crccards)
-
-5.[Status](#status)
+5.[Compilação](#status)
 
 <h1 id = Descrição>Descrição</h1>  
 
@@ -36,43 +34,34 @@ As funções comparam as cartas da mão e da mesa e selecionam a melhor combina�
 
 <h1 id = Tecnologias>Tecnologias Utilizadas</h1>
 
-<h5>C++</h4>
+<h5>C++</h5>
+<br><br>
+<h1 id = compilação>Compilação</h1><br>
+
+<h3> Jogo:</h3>
+Para compilar o jogo é necessário executar o comando make e em seguida ./bin/main
+
+<br><h3>Testes:</h3> <br>
+Para rodar o teste é necessário executar os seguintes comandos:
+<br>
+g++ -c src/Contador.cpp
+g++ -c src/Baralho.cpp
+
+Baralho:
+<br>
+
+g++ tests/testeContadorBaralho.cpp Baralho.o -o testeBaralho
+
 <br><br>
 
-<h1 id = projeto> Projeto </h1><br>
+Contador:
+<br>
+g++ tests/testeContador.cpp Contador.o Baralho.o -o testeContador
+<br>
+e em seguida 
+<br>
+./testeContador
 
 
 
-<h1 id = crccards> CRC Cards </h1><br>
-
-![](Images/classe_carta.png)
-
-<br> Compara valores uma a uma e deixa a carta virada com o rosto para cima ou para baixo<br><br>
-
-![](Images/classe_baralho.png)
-
- Distribui as cartas aos jogadores, cria um novo baralho a cada jogo iniciado, embaralha as cartas e mostra a carta do topo<br><br>
-
-![](Images/classe_mão.png)
-
-<br>Compara a mão do jogador e adiciona uma carta à mão, caso necessário<br><br>
-
-![](Images/classe_jogador.png)
-<br> Fazer uma aposta, comparar mão do jogador com cartas na mesa, igualar a aposta, dobrar a aposta, limpar a mesa (caso bot) mostrar resultado<br><br>
-
-![](Images/classe_computador.png)
-
-<br> Fazer o movimento do bot de acordo com a dificuldade escolhida <br><br>
-
-![](Images/classe_jogo.png)
-<br>Inicia o jogo e define a dificuldade do bot<br><br>
-
-
-
-
-
-
-
-<h1 id = status>Status</h1><br>
-Em andamento.
 
