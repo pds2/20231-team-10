@@ -12,7 +12,18 @@ using namespace std;
 using namespace Baralhos;
 using namespace Automations;
 using namespace Contador;
-
+/**
+ * @brief Decide ação de bot
+ * 
+ * @param jogador 
+ * @param pote 
+ * @param cartas_na_mesa 
+ * @param ultima_aposta 
+ * @param jogadores_ativos 
+ * @param rodada 
+ * @param dificuldade 
+ * @return int 
+ */
 int Automations::Decisor::decidirAcao(
     Jogador *jogador,
     int pote, 
@@ -111,7 +122,18 @@ int Automations::Decisor::decidirAcao(
     return acao;
 
 };
-
+/**
+ * @brief Decide a aposta do bot
+ * 
+ * @param jogador 
+ * @param pote 
+ * @param cartas_na_mesa 
+ * @param ultima_aposta 
+ * @param jogadores_ativos 
+ * @param rodada 
+ * @param dificuldade 
+ * @return int 
+ */
 int Automations::Decisor::decidirAposta(
     Jogador *jogador,
     int pote, 
