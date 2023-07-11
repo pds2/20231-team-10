@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Baralho.h"
-#include "Contador.h"
+#include "../include/Baralho.h"
+#include "../include/Contador.h"
 
 using namespace std;
 using namespace Baralhos;

@@ -51,6 +51,10 @@ Baralho:
 <br>
 
 g++ tests/testeContadorBaralho.cpp Baralho.o -o testeBaralho
+<br>
+e em seguida
+<br>
+./testeBaralho
 
 <br><br>
 
