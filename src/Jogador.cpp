@@ -35,13 +35,32 @@ void Players::Dealer::setId(int id) {
 void Players::Dealer::setNome(std::string nome) {
     this->nome = nome;
 };
+
 void Players::Dealer::receberBaralho(vector<Carta> baralho) {
+try {
+    if (baralho.empty()) {
+        throw std::runtime_error("O baralho recebido está vazio. ");
+    }
     this->baralho = baralho;
+  } catch (const std::exception& e) {
+    std::cerr << "Ocorreu um erro ao receber o baralho: " << e.what() << std::endl;
+ }
 };  
+
 vector<Carta> Players::Dealer::exibirCartas(int quantidade) {
+    try {
+     if (quantidade < 0) {
+        throw std::invalid_argument("A quantidade de cartas deve ser não negativa.");
+    }
+        
     int maximal = min(int(this->baralho.size()), quantidade);
     vector<Carta> cartas = this->baralho;
     cartas.resize(maximal);
+
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao exibir as cartas: " << e.what() << std::endl;
+    }
+    
     return cartas;
 };
 
@@ -113,14 +132,34 @@ void Players::Jogador::adicionarFichas(int fichas) {
     this->fichas += fichas;
 };
 void Players::Jogador::apostarFichas(int fichas) {
+    try {
+    if (fichas < 0) {
+        throw std::invalid_argument("A quantidade de fichas apostadas deve ser não negativa.");
+    }
+    if (fichas > this->fichas) {
+        throw std::runtime_error("Quantidade de fichas insuficiente para a aposta.");
+    }
+        
     this->fichas -= fichas;
     this->fichas_apostadas += fichas;
+
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao apostar fichas: " << e.what() << std::endl;
+    }
 };
 void Players::Jogador::adicionarPontos(int pontos) {
     this->pontos += pontos;
 };
 void Players::Jogador::receberBaralho(vector<Carta> baralho) {
+    try {
+    if (baralho.empty()) {
+        throw std::runtime_error("O baralho recebido está vazio.");
+    }
     this->baralho = baralho;
+
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao receber o baralho: " << e.what() << std::endl;
+    }
 };
 
 vector<Carta> Players::Jogador::exibirCartas() {

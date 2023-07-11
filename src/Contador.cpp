@@ -1,8 +1,8 @@
 
 #include <iostream>
 #include <string>
-#include "Baralho.h"
-#include "Contador.h"
+#include "../include/Baralho.h"
+#include "../include/Contador.h"
 
 using namespace std;
 using namespace Baralhos;
@@ -10,8 +10,14 @@ using namespace Contador;
 
 bool ContadorDeBaralho::ocorreuStraightFlush(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+     if (cartas.size() < 5) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Straight Flush.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 4; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 4].getIndice()) == 4) {
@@ -24,13 +30,24 @@ bool ContadorDeBaralho::ocorreuStraightFlush(vector<Carta> cartas_jogador, vecto
             }
         }
     }
+    
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Straight Flush: " << e.what() << std::endl;
+    }
+    
     return resposta;
 }
 
 bool ContadorDeBaralho::ocorreuQuadra(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+    if (cartas.size() < 4) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Quadra.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 3; i++) {
         if (cartas[i].getIndice() - cartas[i + 3].getIndice() == 0) {
@@ -46,14 +63,24 @@ bool ContadorDeBaralho::ocorreuQuadra(vector<Carta> cartas_jogador, vector<Carta
             }
         }
     }
-
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Quadra: " << e.what() << std::endl;
+    }
+    
     return resposta;
 };
 
 bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+    if (cartas.size() < 3) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Full House.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 2; i++) {
         if (cartas[i].getIndice() - cartas[i + 2].getIndice() == 0) {
@@ -78,17 +105,29 @@ bool ContadorDeBaralho::ocorreuFullHouse(vector<Carta> cartas_jogador, vector<Ca
             }
         }
     }
+
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Full House: " << e.what() << std::endl;
+    }
+    
     return resposta;
 };
 
 bool ContadorDeBaralho::ocorreuFlush(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+    if (cartas.size() < 5) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Flush.");
+    }
+        
     int cartas_copas = 0;
     int cartas_espadas = 0;
     int cartas_ouros = 0;
     int cartas_paus = 0;
+        
     // Copas", "Espadas", "Ouros", "Paus
     for (unsigned int i = 0; i < cartas.size(); i++) {
         if (cartas[i].getNaipe() == "Copas") {
@@ -104,13 +143,24 @@ bool ContadorDeBaralho::ocorreuFlush(vector<Carta> cartas_jogador, vector<Carta>
     if (cartas_copas >= 5 || cartas_espadas >= 5 || cartas_ouros >= 5 || cartas_paus >= 5) {
         resposta = true;
     }
+        
+    } catch (const std::exception& e) {
+        std:: cerr << "Ocorreu um erro ao verificar o Flush: " << e.what() << std::endl;
+    }
+    
     return resposta;
 };
 
 bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+     if (cartas.size() < 5) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Sequência.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 4; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 4].getIndice()) == 4) {
@@ -136,13 +186,24 @@ bool ContadorDeBaralho::ocorreuSequencia(vector<Carta> cartas_jogador, vector<Ca
             }
         }
     }
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Sequência: " << e.what() << std::endl;
+    }
+    
     return resposta;
 }
 
 bool ContadorDeBaralho::ocorreuDoisPares(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+     if (cartas.size() < 2) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Dois Pares.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 1; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 1].getIndice()) == 1) {
@@ -157,13 +218,24 @@ bool ContadorDeBaralho::ocorreuDoisPares(vector<Carta> cartas_jogador, vector<Ca
             }
         }
     }
+
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Dois Pares: " << e.what() << std::endl;
+    }
+    
     return resposta;
 }
 
 bool ContadorDeBaralho::ocorreuPares(vector<Carta> cartas_jogador, vector<Carta> cartas_mesa) {
     bool resposta = false;
+
+    try {
     vector<Carta> cartas = cartas_jogador;
     cartas.insert(cartas.end(), cartas_mesa.begin(), cartas_mesa.end());
+    if (cartas.size() < 2) {
+        throw std::runtime_error("Não há cartas suficientes para verificar Pares.");
+    }
+        
     std::sort(cartas.begin(), cartas.end(), greater<Carta>());
     for (unsigned int i = 0; i < cartas.size() - 1; i++) {
         if (abs(cartas[i].getIndice() - cartas[i + 1].getIndice()) == 1) {
@@ -171,6 +243,11 @@ bool ContadorDeBaralho::ocorreuPares(vector<Carta> cartas_jogador, vector<Carta>
             break;
         }
     }
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Ocorreu um erro ao verificar Pares: " << e.what() << std::endl;
+    }
+    
     return resposta;
 }
 
