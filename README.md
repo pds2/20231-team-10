@@ -18,6 +18,8 @@ Pedro Henrique Esteves Dalla-Lana<br>
 Sarah Aline Caetano Cruz<br>
 Sanny Cristiane Moreira de Sales
 
+Vídeo com a explicação do trabalho: https://youtu.be/c66AD9EoAA0
+
 <br><br><br>
 <h1 id = funcionalidades>Funcionalidades</h1>
 
